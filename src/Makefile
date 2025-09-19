@@ -8,5 +8,5 @@ compile:
 	vlog top.sv +incdir+/tools/mentor/questasim_10.6c/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src
 
 clean:
-	rm -rf covReport/ work/ 
-	rm coverage.ucdb
+	rm -rf work/	 
+	rm  dump.vcd top.log transcript
