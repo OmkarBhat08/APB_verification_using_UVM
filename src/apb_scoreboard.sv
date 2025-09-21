@@ -3,8 +3,7 @@
 
 class apb_scoreboard extends uvm_scoreboard();
 
-	bit [7:0] mem1 [127:0];
-	bit [7:0] mem2 [127:0];
+	bit [7:0] mem [255:0];
 
 	uvm_analysis_imp_from_inp #(apb_sequence_item, apb_scoreboard) inputs_export;
 	uvm_analysis_imp_from_out #(apb_sequence_item, apb_scoreboard) outputs_export;
@@ -45,47 +44,22 @@ class apb_scoreboard extends uvm_scoreboard();
 			end
 			// Writing or reading
       if(packet1.READ_WRITE == 0)  // Write
-			begin
-				if(packet1.apb_write_paddr[8])
-					mem2[packet1.apb_write_paddr[7:0]] = packet1.apb_write_data;
-				else
-					mem1[packet1.apb_write_paddr[7:0]] = packet1.apb_write_data;
-			end
+					mem[packet1.apb_write_paddr] = packet1.apb_write_data;
 			else  //Read and compare
 			begin
-				if(packet1.apb_write_paddr[8])
+				if(packet2.apb_read_data_out === mem[packet1.apb_read_paddr])
 				begin
-					if(packet2.apb_read_data_out === mem2[packet1.apb_read_paddr])
-					begin
-				$display("memory2 value = %0d", mem2[packet1.apb_read_paddr]);
-						$display("------------------------------------------------------------------------------");
-						$display("                TEST PASSED                                 ");
-						$display("------------------------------------------------------------------------------");
-					end
-					else
-					begin
-				$display("memory2 value = %0d", mem2[packet1.apb_read_paddr]);
-						$display("------------------------------------------------------------------------------");
-						$display("                TEST FAILED                                 ");
-						$display("------------------------------------------------------------------------------");
-					end
+					$display("------------------------------------------------------------------------------");
+					$display("                TEST PASSED                                 ");
+					$display("------------------------------------------------------------------------------");
+					$display("############################################################################################################################");
 				end
 				else
 				begin
-					if(packet2.apb_read_data_out === mem1[packet1.apb_read_paddr])
-					begin
-				$display("memory1 value = %0d", mem1[packet1.apb_read_paddr]);
-						$display("------------------------------------------------------------------------------");
-						$display("                TEST PASSED                                 ");
-						$display("------------------------------------------------------------------------------");
-					end
-					else
-					begin
-				$display("memory1 value = %0d", mem1[packet1.apb_read_paddr]);
-						$display("------------------------------------------------------------------------------");
-						$display("                TEST FAILED                                 ");
-						$display("------------------------------------------------------------------------------");
-					end
+					$display("------------------------------------------------------------------------------");
+					$display("                TEST FAILED                                 ");
+					$display("------------------------------------------------------------------------------");
+					$display("############################################################################################################################");
 				end
 			end
 		end

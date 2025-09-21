@@ -45,6 +45,7 @@ module top();
 	initial
 	begin
 		run_test("regression_test");
-		#100 $finish;
+		//#60 
+		$finish;
 	end
 endmodule
