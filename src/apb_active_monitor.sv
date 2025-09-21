@@ -21,20 +21,24 @@ class apb_active_monitor extends uvm_monitor;
 	endfunction
 
 	virtual task run_phase(uvm_phase phase);
+      
 		forever 
 		begin
-			repeat(2)@(vif.monitor_cb);
+          repeat(2)@(vif.monitor_cb);
 			//apb_sequence_item_1.PRESETn = vif.PRESETn;
 			apb_sequence_item_1.transfer = vif.transfer;
 			apb_sequence_item_1.READ_WRITE = vif.READ_WRITE;
 			apb_sequence_item_1.apb_write_paddr = vif.apb_write_paddr;
 			apb_sequence_item_1.apb_write_data = vif.apb_write_data;
 			apb_sequence_item_1.apb_read_paddr = vif.apb_read_paddr;
-
-			active_item_port.write(apb_sequence_item_1);
-			$display("---------------------------Active Monitor @%0d-----------------------------------",$time);
+          
+          $display("---------------------------Active Monitor @%0d-----------------------------------",$time);
 			apb_sequence_item_1.print();
-			repeat(1)@(vif.monitor_cb);
+
+          repeat(1)@(vif.monitor_cb);
+			active_item_port.write(apb_sequence_item_1);
+            
+          repeat(1)@(vif.monitor_cb);
 		end
 	endtask
 endclass

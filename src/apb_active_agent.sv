@@ -20,4 +20,3 @@ class apb_active_agent extends uvm_agent;
 		apb_driver_1.seq_item_port.connect(apb_sequencer_1.seq_item_export);
 	endfunction
 endclass
- 

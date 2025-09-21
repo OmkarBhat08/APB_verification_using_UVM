@@ -44,7 +44,7 @@ class apb_scoreboard extends uvm_scoreboard();
 				packet2 = output_packet.pop_front();
 			end
 			// Writing or reading
-			if(packet1.READ_WRITE)  // Write
+      if(packet1.READ_WRITE == 0)  // Write
 			begin
 				if(packet1.apb_write_paddr[8])
 					mem2[packet1.apb_write_paddr[7:0]] = packet1.apb_write_data;
@@ -57,12 +57,14 @@ class apb_scoreboard extends uvm_scoreboard();
 				begin
 					if(packet2.apb_read_data_out === mem2[packet1.apb_read_paddr])
 					begin
+				$display("memory2 value = %0d", mem2[packet1.apb_read_paddr]);
 						$display("------------------------------------------------------------------------------");
 						$display("                TEST PASSED                                 ");
 						$display("------------------------------------------------------------------------------");
 					end
 					else
 					begin
+				$display("memory2 value = %0d", mem2[packet1.apb_read_paddr]);
 						$display("------------------------------------------------------------------------------");
 						$display("                TEST FAILED                                 ");
 						$display("------------------------------------------------------------------------------");
@@ -72,12 +74,14 @@ class apb_scoreboard extends uvm_scoreboard();
 				begin
 					if(packet2.apb_read_data_out === mem1[packet1.apb_read_paddr])
 					begin
+				$display("memory1 value = %0d", mem1[packet1.apb_read_paddr]);
 						$display("------------------------------------------------------------------------------");
 						$display("                TEST PASSED                                 ");
 						$display("------------------------------------------------------------------------------");
 					end
 					else
 					begin
+				$display("memory1 value = %0d", mem1[packet1.apb_read_paddr]);
 						$display("------------------------------------------------------------------------------");
 						$display("                TEST FAILED                                 ");
 						$display("------------------------------------------------------------------------------");

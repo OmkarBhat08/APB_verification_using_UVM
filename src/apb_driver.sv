@@ -31,6 +31,6 @@ class apb_driver extends uvm_driver #(apb_sequence_item);
 		vif.driver_cb.apb_read_paddr <= seq.apb_read_paddr;
 		vif.driver_cb.apb_write_data <= seq.apb_write_data;
 		`uvm_info(get_type_name(), $sformatf("DRIVER: transfer = %0d, READ_WRITE = %0d, apb_write_paddr = %0h, apb_write_data = %0d, apb_read_paddr = %0h", vif.driver_cb.transfer, vif.driver_cb.READ_WRITE, vif.driver_cb.apb_write_paddr, vif.driver_cb.apb_write_data, vif.driver_cb.apb_read_paddr), UVM_MEDIUM)
-		repeat(4) @(vif.driver_cb);
+      repeat(4) @(vif.driver_cb);
 	endtask
 endclass

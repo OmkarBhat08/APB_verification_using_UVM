@@ -28,7 +28,7 @@ class write_sequence extends uvm_sequence #(apb_sequence_item);
 	endfunction
 
 	virtual task body();
-		`uvm_do_with(req,{req.transfer == 1; req.READ_WRITE == 1; req.apb_write_paddr == 9'b000000010;});
+      `uvm_do_with(req,{req.transfer == 1; req.READ_WRITE == 0; req.apb_write_paddr == 9'b000000010;});
 		//`uvm_info(get_type_name(), $sformatf("SEQUENCE GENERATED: transfer = %0d, READ_WRITE = %0d, apb_write_paddr = %0h, apb_write_data = %0d, apb_read_paddr = %0h", seq_item.transfer, seq_item.READ_WRITE, seq_item.apb_write_paddr, seq_item.apb_write_data, seq_item.apb_read_paddr), UVM_MEDIUM)
 	endtask
 endclass
@@ -41,7 +41,7 @@ class read_sequence extends uvm_sequence #(apb_sequence_item);
 	endfunction
 
 	virtual task body();
-		`uvm_do_with(req,{req.transfer == 1; req.READ_WRITE == 0; req.apb_read_paddr == 9'b000000010;});
+      `uvm_do_with(req,{req.transfer == 1; req.READ_WRITE == 1;  req.apb_read_paddr == 9'b000000010;});
 		//`uvm_info(get_type_name(), $sformatf("SEQUENCE GENERATED: transfer = %0d, READ_WRITE = %0d, apb_write_paddr = %0h, apb_write_data = %0d, apb_read_paddr = %0h", seq_item.transfer, seq_item.READ_WRITE, seq_item.apb_write_paddr, seq_item.apb_write_data, seq_item.apb_read_paddr), UVM_MEDIUM)
 	endtask
 endclass
@@ -61,4 +61,3 @@ class regression_sequence extends uvm_sequence #(apb_sequence_item);
 		`uvm_do(rd_seq);
 	endtask
 endclass
- 

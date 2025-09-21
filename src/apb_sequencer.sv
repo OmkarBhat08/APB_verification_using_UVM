@@ -6,4 +6,3 @@ class apb_sequencer extends uvm_sequencer #(apb_sequence_item);
 		super.new(name, parent);
 	endfunction
 endclass
- 

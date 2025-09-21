@@ -79,7 +79,7 @@ class regression_test extends apb_base_test;
 		regression_sequence seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		repeat(1)
+      repeat(2)
 		begin
 			seq = regression_sequence::type_id::create("seq");
 			seq.start(env.apb_active_agent_1.apb_sequencer_1);
