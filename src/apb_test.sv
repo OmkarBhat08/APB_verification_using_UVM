@@ -67,10 +67,10 @@ class write_test extends apb_base_test;
 	endfunction
 
 	virtual task run_phase(uvm_phase phase);
-		write_sequence seq;
+		write_sequence1 seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		seq = write_sequence::type_id::create("seq");
+		seq = write_sequence1::type_id::create("seq");
 		seq.start(env.apb_active_agent_1.apb_sequencer_1);
 		phase.drop_objection(this, "Objection Dropped");
 	endtask
@@ -88,10 +88,10 @@ class read_test extends apb_base_test;
 	endfunction
 
 	virtual task run_phase(uvm_phase phase);
-		read_sequence seq;
+		read_sequence2 seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		seq = read_sequence::type_id::create("seq");
+		seq = read_sequence2::type_id::create("seq");
 		seq.start(env.apb_active_agent_1.apb_sequencer_1);
 		phase.drop_objection(this, "Objection Dropped");
 	endtask

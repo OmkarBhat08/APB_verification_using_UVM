@@ -25,7 +25,7 @@ class apb_active_monitor extends uvm_monitor;
 		forever 
 		begin
       repeat(1)@(vif.monitor_cb);
-			//apb_sequence_item_1.PRESETn = vif.PRESETn;
+			apb_sequence_item_1.PRESETn = vif.PRESETn;
 			apb_sequence_item_1.transfer = vif.transfer;
 			apb_sequence_item_1.READ_WRITE = vif.READ_WRITE;
 			apb_sequence_item_1.apb_write_paddr = vif.apb_write_paddr;

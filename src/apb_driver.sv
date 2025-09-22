@@ -27,12 +27,13 @@ class apb_driver extends uvm_driver #(apb_sequence_item);
 
 	virtual task drive();
     repeat(1) @(vif.driver_cb);
+		vif.driver_cb.PRESETn <= seq.PRESETn;
 		vif.driver_cb.transfer <= seq.transfer;
 		vif.driver_cb.READ_WRITE <= seq.READ_WRITE;
 		vif.driver_cb.apb_write_paddr <= seq.apb_write_paddr;
 		vif.driver_cb.apb_read_paddr <= seq.apb_read_paddr;
 		vif.driver_cb.apb_write_data <= seq.apb_write_data;
-		`uvm_info(get_type_name(), $sformatf("DRIVER: transfer = %0d, READ_WRITE = %0d, apb_write_paddr = %0h, apb_write_data = %0d, apb_read_paddr = %0h", vif.driver_cb.transfer, vif.driver_cb.READ_WRITE, vif.driver_cb.apb_write_paddr, vif.driver_cb.apb_write_data, vif.driver_cb.apb_read_paddr), UVM_MEDIUM)
+		`uvm_info(get_type_name(), $sformatf("DRIVER: PRESETn = %0b, transfer = %0d, READ_WRITE = %0d, apb_write_paddr = %0h, apb_write_data = %0d, apb_read_paddr = %0h", vif.driver_cb.PRESETn, vif.driver_cb.transfer, vif.driver_cb.READ_WRITE, vif.driver_cb.apb_write_paddr, vif.driver_cb.apb_write_data, vif.driver_cb.apb_read_paddr), UVM_MEDIUM)
     repeat(2) @(vif.driver_cb);
 	endtask
 endclass

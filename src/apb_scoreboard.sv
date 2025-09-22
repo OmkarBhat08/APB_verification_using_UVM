@@ -3,7 +3,7 @@
 
 class apb_scoreboard extends uvm_scoreboard();
 
-	bit [7:0] mem [255:0];
+	bit [7:0] mem [512:0];
 
 	uvm_analysis_imp_from_inp #(apb_sequence_item, apb_scoreboard) inputs_export;
 	uvm_analysis_imp_from_out #(apb_sequence_item, apb_scoreboard) outputs_export;
@@ -42,23 +42,28 @@ class apb_scoreboard extends uvm_scoreboard();
 				packet2 = output_packet.pop_front();
 			end
 			// Writing or reading
-      if(packet1.READ_WRITE == 0)  // Write
-					mem[packet1.apb_write_paddr] = packet1.apb_write_data;
-			else  //Read and compare
+			if(packet1.PRESETn == 0)
+				$display("PRESETn is applied");
+			else
 			begin
-				if(packet2.apb_read_data_out === mem[packet1.apb_read_paddr])
+      	if(packet1.READ_WRITE == 0)  // Write
+					mem[packet1.apb_write_paddr] = packet1.apb_write_data;
+				else  //Read and compare
 				begin
-					$display("------------------------------------------------------------------------------");
-					$display("                TEST PASSED @ %0t                             ", $time);
-					$display("------------------------------------------------------------------------------");
-					$display("############################################################################################################################");
-				end
-				else
-				begin
-					$display("------------------------------------------------------------------------------");
-					$display("                TEST FAILED @ %0t                                ",$time);
-					$display("------------------------------------------------------------------------------");
-					$display("############################################################################################################################");
+					if(packet2.apb_read_data_out === mem[packet1.apb_read_paddr])
+					begin
+						$display("------------------------------------------------------------------------------");
+						$display("                TEST PASSED @ %0t                             ", $time);
+						$display("------------------------------------------------------------------------------");
+						$display("############################################################################################################################");
+					end
+					else
+					begin
+						$display("------------------------------------------------------------------------------");
+						$display("                TEST FAILED @ %0t                                ",$time);
+						$display("------------------------------------------------------------------------------");
+						$display("############################################################################################################################");
+					end
 				end
 			end
 		end

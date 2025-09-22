@@ -13,6 +13,7 @@ class apb_subscriber extends uvm_component;
 
   covergroup input_cov;
     //reset:; How to give reset?
+    reset: coverpoint trans_inp.PRESETn;
     transfer: coverpoint trans_inp.transfer;
     read_write: coverpoint trans_inp.READ_WRITE iff(trans_inp.transfer == 1);
   endgroup
