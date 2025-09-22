@@ -36,7 +36,6 @@ class apb_scoreboard extends uvm_scoreboard();
 		super.run_phase(phase);
 		forever
 		begin
-
 			wait((input_packet.size() > 0) && (output_packet.size() > 0));
 			begin
 				packet1 = input_packet.pop_front();
@@ -50,14 +49,14 @@ class apb_scoreboard extends uvm_scoreboard();
 				if(packet2.apb_read_data_out === mem[packet1.apb_read_paddr])
 				begin
 					$display("------------------------------------------------------------------------------");
-					$display("                TEST PASSED                                 ");
+					$display("                TEST PASSED @ %0t                             ", $time);
 					$display("------------------------------------------------------------------------------");
 					$display("############################################################################################################################");
 				end
 				else
 				begin
 					$display("------------------------------------------------------------------------------");
-					$display("                TEST FAILED                                 ");
+					$display("                TEST FAILED @ %0t                                ",$time);
 					$display("------------------------------------------------------------------------------");
 					$display("############################################################################################################################");
 				end

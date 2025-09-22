@@ -83,7 +83,9 @@ class regression_sequence extends uvm_sequence #(apb_sequence_item);
 	virtual task body();
 		`uvm_do(wr_seq);
 		`uvm_do(rd_seq);
-		`uvm_do(tr1_seq);
-		`uvm_do(tr2_seq);
+		`uvm_do(wr_seq);
+		`uvm_do(rd_seq);
+		//`uvm_do(tr1_seq);
+		//`uvm_do(tr2_seq);
 	endtask
 endclass

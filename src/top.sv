@@ -1,7 +1,8 @@
 `include "defines.svh"
 `include "apb_interfs.sv"
 `include "apb_pkg.sv"
-`include "apb_protocol.v"
+//`include "apb_protocol.v"
+`include "apb_design.sv"
 //`include "uvm_macros.svh"
 
 import uvm_pkg::*;
@@ -29,7 +30,7 @@ module top();
 
 	initial
 	begin
-		PCLK = 1;
+		PCLK = 0;
 		PRESETn = 1;
 		//#20 PRESETn = 0;
 	end

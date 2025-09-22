@@ -23,14 +23,13 @@ class apb_passive_monitor extends uvm_monitor;
 	virtual task run_phase(uvm_phase phase);
 		forever 
 		begin
-      repeat(3)@(vif.monitor_cb);
+     repeat(3)@(vif.monitor_cb);
 			apb_sequence_item_1.PSLVERR = vif.PSLVERR;
 			apb_sequence_item_1.apb_read_data_out = vif.apb_read_data_out;
 
 			passive_item_port.write(apb_sequence_item_1);
       $display("---------------------------Passive Monitor @%0d-----------------------------------",$time);
 			apb_sequence_item_1.print();
-      //repeat(1)@(vif.monitor_cb);
 		end
 	endtask
 endclass
