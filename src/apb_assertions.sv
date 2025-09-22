@@ -9,7 +9,7 @@ program apb_assertions(PCLK, PRESETn, transfer, READ_WRITE, apb_write_paddr, apb
 	//                                              Assertions
 
 	property PRESETn_check;
-		@(posedge PCLK) (!PRESETn) |=> (PSLVERR == 0) && (apb_read_data_out == 0);
+		@(posedge PCLK) (!PRESETn) |-> (PSLVERR == 0) && (apb_read_data_out == 0);
 	endproperty
 
 	property transfer_check0;
@@ -21,4 +21,19 @@ program apb_assertions(PCLK, PRESETn, transfer, READ_WRITE, apb_write_paddr, apb
 		@(posedge PCLK) disable iff (!PRESETn)
 			$rose(transfer) |=> ##[1:2] ($stable(apb_write_paddr) && $stable(READ_WRITE) && $stable(apb_read_paddr));
 	endproperty
+
+	assert property(PRESETn_check)
+		$display("RESET is asserted");
+	else
+		$display("RESET is not asserted");
+
+	assert property(transfer_check0)
+		$display("PSLVERR and apb_read_data_out are stable for transfer = 0");
+	else
+		$display("PSLVERR and apb_read_data_out not are stable for transfer = 0");
+
+	assert property(transfer_check1)
+		$display("apb_write_paddr, READ_WRITE and apb_read_paddr are stable");
+	else
+		$display("apb_write_paddr, READ_WRITE and apb_read_paddr are not stable");
 endprogram

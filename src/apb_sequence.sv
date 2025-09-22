@@ -20,6 +20,30 @@ class apb_sequence extends uvm_sequence #(apb_sequence_item);
 endclass
 
 //------------------------------------------------------------------------------------------------------
+class reset_sequence extends uvm_sequence #(apb_sequence_item); 
+	`uvm_object_utils(reset_sequence)
+
+	function new(string name = "reset_sequence");
+		super.new(name);
+	endfunction
+
+	virtual task body();
+		`uvm_do_with(req,{req.PRESETn == 0; req.transfer == 1;});
+	endtask
+endclass
+//------------------------------------------------------------------------------------------------------
+class random_sequence extends uvm_sequence #(apb_sequence_item); 
+	`uvm_object_utils(random_sequence)
+
+	function new(string name = "random_sequence");
+		super.new(name);
+	endfunction
+
+	virtual task body();
+		`uvm_do_with(req,{req.PRESETn == 1; req.transfer == 0;req.READ_WRITE == 1;});
+	endtask
+endclass
+//------------------------------------------------------------------------------------------------------
 class transfer_sequence1 extends uvm_sequence #(apb_sequence_item); 
 	`uvm_object_utils(transfer_sequence1)
 
@@ -94,7 +118,8 @@ endclass
 //------------------------------------------------------------------------------------------------------
 class regression_sequence extends uvm_sequence #(apb_sequence_item); 
 	`uvm_object_utils(regression_sequence)
-	
+	reset_sequence rst_seq;	
+	random_sequence rand_seq;	
 	transfer_sequence1 tr1_seq;
 	transfer_sequence2 tr2_seq;
 	write_sequence1 wr_seq1;
@@ -107,6 +132,8 @@ class regression_sequence extends uvm_sequence #(apb_sequence_item);
 	endfunction
 
 	virtual task body();
+		`uvm_do(rst_seq);
+		`uvm_do(rand_seq);
 		`uvm_do(tr1_seq);
 		`uvm_do(tr2_seq);
 		`uvm_do(wr_seq1);

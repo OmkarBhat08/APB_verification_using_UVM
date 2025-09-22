@@ -43,7 +43,12 @@ class apb_scoreboard extends uvm_scoreboard();
 			end
 			// Writing or reading
 			if(packet1.PRESETn == 0)
-				$display("PRESETn is applied");
+			begin
+						$display("------------------------------------------------------------------------------");
+						$display("                PRESETn is applied                            ");
+						$display("------------------------------------------------------------------------------");
+						$display("############################################################################################################################");
+			end
 			else
 			begin
       	if(packet1.READ_WRITE == 0)  // Write
