@@ -1,0 +1,298 @@
+# //  Questa Sim
+# //  Version 10.6c linux Jul 25 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# vsim -novopt work.top 
+# Start time: 11:12:03 on Sep 22,2025
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /fetools/work_area/frontend/Batch_10/omkar/projects/APB_verification_using_UVM/src/work.top
+# Refreshing /fetools/work_area/frontend/Batch_10/omkar/projects/APB_verification_using_UVM/src/work.top_sv_unit
+# Refreshing /fetools/work_area/frontend/Batch_10/omkar/projects/APB_verification_using_UVM/src/work.apb_interfs
+# Loading sv_std.std
+# Loading work.apb_interfs
+# Refreshing /fetools/work_area/frontend/Batch_10/omkar/projects/APB_verification_using_UVM/src/work.apb_pkg
+# Loading mtiUvm.uvm_pkg
+# Loading work.apb_pkg
+# Loading work.top_sv_unit
+# Loading work.top
+# Refreshing /fetools/work_area/frontend/Batch_10/omkar/projects/APB_verification_using_UVM/src/work.APB_Protocol
+# Loading work.APB_Protocol
+# Refreshing /fetools/work_area/frontend/Batch_10/omkar/projects/APB_verification_using_UVM/src/work.master_bridge
+# Loading work.master_bridge
+# Refreshing /fetools/work_area/frontend/Batch_10/omkar/projects/APB_verification_using_UVM/src/work.slave1
+# Loading work.slave1
+# Refreshing /fetools/work_area/frontend/Batch_10/omkar/projects/APB_verification_using_UVM/src/work.slave2
+# Loading work.slave2
+# Loading mtiUvm.questa_uvm_pkg
+# Loading /tools/mentor/questasim_10.6c/questasim/uvm-1.1d/linux/uvm_dpi.so
+add wave -position insertpoint  \
+sim:/top/vif/PCLK \
+sim:/top/vif/PRESETn \
+sim:/top/vif/transfer \
+sim:/top/vif/READ_WRITE \
+sim:/top/vif/apb_write_paddr \
+sim:/top/vif/apb_write_data \
+sim:/top/vif/apb_read_paddr \
+sim:/top/vif/PSLVERR \
+sim:/top/vif/apb_read_data_out \
+sim:/top/vif/monitor_cb/PSLVERR \
+sim:/top/vif/monitor_cb/apb_read_data_out \
+sim:/top/vif/monitor_cb/apb_write_paddr \
+sim:/top/vif/monitor_cb/apb_write_data \
+sim:/top/vif/monitor_cb/apb_read_paddr \
+sim:/top/vif/monitor_cb/transfer \
+sim:/top/vif/monitor_cb/READ_WRITE \
+sim:/top/vif/monitor_cb/monitor_cb_event
+run -a
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO @ 0: reporter [RNTST] Running test regression_test...
+# -------------------------------------------------------------------
+# Name                         Type                       Size  Value
+# -------------------------------------------------------------------
+# uvm_test_top                 regression_test            -     @471 
+#   env                        apb_env                    -     @478 
+#     apb_active_agent_1       apb_active_agent           -     @485 
+#       apb_active_monitor_1   apb_active_monitor         -     @678 
+#         active_item_port     uvm_analysis_port          -     @689 
+#       apb_driver_1           apb_driver                 -     @546 
+#         rsp_port             uvm_analysis_port          -     @561 
+#         seq_item_port        uvm_seq_item_pull_port     -     @553 
+#       apb_sequencer_1        apb_sequencer              -     @569 
+#         rsp_export           uvm_analysis_export        -     @576 
+#         seq_item_export      uvm_seq_item_pull_imp      -     @670 
+#         arbitration_queue    array                      0     -    
+#         lock_queue           array                      0     -    
+#         num_last_reqs        integral                   32    'd1  
+#         num_last_rsps        integral                   32    'd1  
+#     apb_passive_agent_1      apb_passive_agent          -     @492 
+#       apb_passive_monitor_1  apb_passive_monitor        -     @705 
+#         passive_item_port    uvm_analysis_port          -     @716 
+#     apb_scoreboard_1         apb_scoreboard             -     @499 
+#       inputs_export          uvm_analysis_imp_from_inp  -     @506 
+#       outputs_export         uvm_analysis_imp_from_out  -     @514 
+#     apb_subscriber_1         apb_subscriber             -     @522 
+#       aport_inputs           uvm_analysis_imp_inp_cg    -     @529 
+#       aport_outputs          uvm_analysis_imp_out_cg    -     @537 
+# -------------------------------------------------------------------
+# UVM_INFO apb_driver.sv(33) @ 0: uvm_test_top.env.apb_active_agent_1.apb_driver_1 [apb_driver] DRIVER: transfer = 1, READ_WRITE = 0, apb_write_paddr = 8, apb_write_data = 178, apb_read_paddr = 7c
+# ---------------------------Active Monitor @10-----------------------------------
+# ---------------------------------------------------
+# Name                 Type               Size  Value
+# ---------------------------------------------------
+# apb_sequence_item    apb_sequence_item  -     @685 
+#   transfer           integral           1     'h1  
+#   READ_WRITE         integral           1     'h0  
+#   apb_write_paddr    integral           9     'h8  
+#   apb_read_paddr     integral           9     'h7c 
+#   apb_write_data     integral           8     178  
+#   apb_read_data_out  integral           8     'dX  
+#   PSLVERR            integral           1     'h0X 
+# ---------------------------------------------------
+# UVM_INFO apb_scoreboard.sv(24) @ 20: uvm_test_top.env.apb_scoreboard_1 [apb_scoreboard] Scoreboard received input packet
+# UVM_INFO apb_subscriber.sv(35) @ 20: uvm_test_top.env.apb_subscriber_1 [apb_subscriber] transfer=1 | read_write = 0
+# UVM_INFO apb_scoreboard.sv(29) @ 20: uvm_test_top.env.apb_scoreboard_1 [apb_scoreboard] Scoreboard received output packet
+# UVM_INFO apb_subscriber.sv(41) @ 20: uvm_test_top.env.apb_subscriber_1 [apb_subscriber] PSLVERR=0
+# ---------------------------Passive Monitor @20-----------------------------------
+# ---------------------------------------------------
+# Name                 Type               Size  Value
+# ---------------------------------------------------
+# apb_sequence_item    apb_sequence_item  -     @712 
+#   transfer           integral           1     'h0  
+#   READ_WRITE         integral           1     'h0  
+#   apb_write_paddr    integral           9     'h0  
+#   apb_read_paddr     integral           9     'h0  
+#   apb_write_data     integral           8     'd0  
+#   apb_read_data_out  integral           8     'dX  
+#   PSLVERR            integral           1     'h0  
+# ---------------------------------------------------
+# UVM_INFO apb_driver.sv(33) @ 30: uvm_test_top.env.apb_active_agent_1.apb_driver_1 [apb_driver] DRIVER: transfer = 1, READ_WRITE = 1, apb_write_paddr = 1cb, apb_write_data = 135, apb_read_paddr = 8
+# ---------------------------Active Monitor @40-----------------------------------
+# ---------------------------------------------------
+# Name                 Type               Size  Value
+# ---------------------------------------------------
+# apb_sequence_item    apb_sequence_item  -     @685 
+#   transfer           integral           1     'h1  
+#   READ_WRITE         integral           1     'h1  
+#   apb_write_paddr    integral           9     'h1cb
+#   apb_read_paddr     integral           9     'h8  
+#   apb_write_data     integral           8     135  
+#   apb_read_data_out  integral           8     'dX  
+#   PSLVERR            integral           1     'h0X 
+# ---------------------------------------------------
+# UVM_INFO apb_scoreboard.sv(29) @ 50: uvm_test_top.env.apb_scoreboard_1 [apb_scoreboard] Scoreboard received output packet
+# UVM_INFO apb_subscriber.sv(41) @ 50: uvm_test_top.env.apb_subscriber_1 [apb_subscriber] PSLVERR=0
+# ---------------------------Passive Monitor @50-----------------------------------
+# ---------------------------------------------------
+# Name                 Type               Size  Value
+# ---------------------------------------------------
+# apb_sequence_item    apb_sequence_item  -     @712 
+#   transfer           integral           1     'h0  
+#   READ_WRITE         integral           1     'h0  
+#   apb_write_paddr    integral           9     'h0  
+#   apb_read_paddr     integral           9     'h0  
+#   apb_write_data     integral           8     'd0  
+#   apb_read_data_out  integral           8     178  
+#   PSLVERR            integral           1     'h0  
+# ---------------------------------------------------
+# UVM_INFO apb_scoreboard.sv(24) @ 50: uvm_test_top.env.apb_scoreboard_1 [apb_scoreboard] Scoreboard received input packet
+# UVM_INFO apb_subscriber.sv(35) @ 50: uvm_test_top.env.apb_subscriber_1 [apb_subscriber] transfer=1 | read_write = 1
+# ------------------------------------------------------------------------------
+#                 TEST PASSED                                 
+# ------------------------------------------------------------------------------
+############################################################################################################################
+# ---------------------------Active Monitor @70-----------------------------------
+# ---------------------------------------------------
+# Name                 Type               Size  Value
+# ---------------------------------------------------
+# apb_sequence_item    apb_sequence_item  -     @685 
+#   transfer           integral           1     'h1  
+#   READ_WRITE         integral           1     'h1  
+#   apb_write_paddr    integral           9     'h1cb
+#   apb_read_paddr     integral           9     'h8  
+#   apb_write_data     integral           8     135  
+#   apb_read_data_out  integral           8     'dX  
+#   PSLVERR            integral           1     'h0X 
+# ---------------------------------------------------
+# UVM_INFO apb_driver.sv(33) @ 70: uvm_test_top.env.apb_active_agent_1.apb_driver_1 [apb_driver] DRIVER: transfer = 1, READ_WRITE = 0, apb_write_paddr = 8, apb_write_data = 250, apb_read_paddr = 155
+# UVM_INFO apb_scoreboard.sv(24) @ 80: uvm_test_top.env.apb_scoreboard_1 [apb_scoreboard] Scoreboard received input packet
+# UVM_INFO apb_subscriber.sv(35) @ 80: uvm_test_top.env.apb_subscriber_1 [apb_subscriber] transfer=1 | read_write = 1
+# UVM_INFO apb_scoreboard.sv(29) @ 80: uvm_test_top.env.apb_scoreboard_1 [apb_scoreboard] Scoreboard received output packet
+# UVM_INFO apb_subscriber.sv(41) @ 80: uvm_test_top.env.apb_subscriber_1 [apb_subscriber] PSLVERR=0
+# ---------------------------Passive Monitor @80-----------------------------------
+# ---------------------------------------------------
+# Name                 Type               Size  Value
+# ---------------------------------------------------
+# apb_sequence_item    apb_sequence_item  -     @712 
+#   transfer           integral           1     'h0  
+#   READ_WRITE         integral           1     'h0  
+#   apb_write_paddr    integral           9     'h0  
+#   apb_read_paddr     integral           9     'h0  
+#   apb_write_data     integral           8     'd0  
+#   apb_read_data_out  integral           8     178  
+#   PSLVERR            integral           1     'h0  
+# ---------------------------------------------------
+# ------------------------------------------------------------------------------
+#                 TEST PASSED                                 
+# ------------------------------------------------------------------------------
+############################################################################################################################
+# ---------------------------Active Monitor @100-----------------------------------
+# ---------------------------------------------------
+# Name                 Type               Size  Value
+# ---------------------------------------------------
+# apb_sequence_item    apb_sequence_item  -     @685 
+#   transfer           integral           1     'h1  
+#   READ_WRITE         integral           1     'h0  
+#   apb_write_paddr    integral           9     'h8  
+#   apb_read_paddr     integral           9     'h155
+#   apb_write_data     integral           8     250  
+#   apb_read_data_out  integral           8     'dX  
+#   PSLVERR            integral           1     'h0X 
+# ---------------------------------------------------
+# UVM_INFO apb_scoreboard.sv(29) @ 110: uvm_test_top.env.apb_scoreboard_1 [apb_scoreboard] Scoreboard received output packet
+# UVM_INFO apb_subscriber.sv(41) @ 110: uvm_test_top.env.apb_subscriber_1 [apb_subscriber] PSLVERR=0
+# ---------------------------Passive Monitor @110-----------------------------------
+# ---------------------------------------------------
+# Name                 Type               Size  Value
+# ---------------------------------------------------
+# apb_sequence_item    apb_sequence_item  -     @712 
+#   transfer           integral           1     'h0  
+#   READ_WRITE         integral           1     'h0  
+#   apb_write_paddr    integral           9     'h0  
+#   apb_read_paddr     integral           9     'h0  
+#   apb_write_data     integral           8     'd0  
+#   apb_read_data_out  integral           8     178  
+#   PSLVERR            integral           1     'h0  
+# ---------------------------------------------------
+# UVM_INFO apb_scoreboard.sv(24) @ 110: uvm_test_top.env.apb_scoreboard_1 [apb_scoreboard] Scoreboard received input packet
+# UVM_INFO apb_subscriber.sv(35) @ 110: uvm_test_top.env.apb_subscriber_1 [apb_subscriber] transfer=1 | read_write = 0
+# UVM_INFO apb_driver.sv(33) @ 110: uvm_test_top.env.apb_active_agent_1.apb_driver_1 [apb_driver] DRIVER: transfer = 1, READ_WRITE = 1, apb_write_paddr = 10f, apb_write_data = 45, apb_read_paddr = 8
+# ---------------------------Active Monitor @130-----------------------------------
+# ---------------------------------------------------
+# Name                 Type               Size  Value
+# ---------------------------------------------------
+# apb_sequence_item    apb_sequence_item  -     @685 
+#   transfer           integral           1     'h1  
+#   READ_WRITE         integral           1     'h1  
+#   apb_write_paddr    integral           9     'h10f
+#   apb_read_paddr     integral           9     'h8  
+#   apb_write_data     integral           8     'd45 
+#   apb_read_data_out  integral           8     'dX  
+#   PSLVERR            integral           1     'h0X 
+# ---------------------------------------------------
+# UVM_INFO apb_scoreboard.sv(24) @ 140: uvm_test_top.env.apb_scoreboard_1 [apb_scoreboard] Scoreboard received input packet
+# UVM_INFO apb_subscriber.sv(35) @ 140: uvm_test_top.env.apb_subscriber_1 [apb_subscriber] transfer=1 | read_write = 1
+# UVM_INFO apb_scoreboard.sv(29) @ 140: uvm_test_top.env.apb_scoreboard_1 [apb_scoreboard] Scoreboard received output packet
+# UVM_INFO apb_subscriber.sv(41) @ 140: uvm_test_top.env.apb_subscriber_1 [apb_subscriber] PSLVERR=0
+# ---------------------------Passive Monitor @140-----------------------------------
+# ---------------------------------------------------
+# Name                 Type               Size  Value
+# ---------------------------------------------------
+# apb_sequence_item    apb_sequence_item  -     @712 
+#   transfer           integral           1     'h0  
+#   READ_WRITE         integral           1     'h0  
+#   apb_write_paddr    integral           9     'h0  
+#   apb_read_paddr     integral           9     'h0  
+#   apb_write_data     integral           8     'd0  
+#   apb_read_data_out  integral           8     250  
+#   PSLVERR            integral           1     'h0  
+# ---------------------------------------------------
+# ------------------------------------------------------------------------------
+#                 TEST PASSED                                 
+# ------------------------------------------------------------------------------
+############################################################################################################################
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 150: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO apb_subscriber.sv(52) @ 150: uvm_test_top.env.apb_subscriber_1 [apb_subscriber] [Input]: Coverage --> 75.00
+# UVM_INFO apb_subscriber.sv(53) @ 150: uvm_test_top.env.apb_subscriber_1 [apb_subscriber] [Output]: Coverage --> 50.00
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   30
+# UVM_WARNING :    0
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [Questa UVM]     2
+# [RNTST]     1
+# [TEST_DONE]     1
+# [apb_driver]     4
+# [apb_scoreboard]    10
+# [apb_subscriber]    12
+# ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 150 ns  Iteration: 70  Instance: /top
+# 1
+# Break in Task uvm_pkg/uvm_root::run_test at /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh line 430
+quit
+# End time: 11:13:33 on Sep 22,2025, Elapsed time: 0:01:30
+# Errors: 0, Warnings: 1
