@@ -28,12 +28,12 @@ program apb_assertions(PCLK, PRESETn, transfer, READ_WRITE, apb_write_paddr, apb
 		$display("RESET is not asserted");
 
 	assert property(transfer_check0)
-		$display("PSLVERR and apb_read_data_out are stable for transfer = 0");
+		$display("\n\nPSLVERR and apb_read_data_out are stable for transfer = 0");
 	else
-		$display("PSLVERR and apb_read_data_out not are stable for transfer = 0");
+		$display("\n\nPSLVERR and apb_read_data_out not are stable for transfer = 0");
 
 	assert property(transfer_check1)
-		$display("apb_write_paddr, READ_WRITE and apb_read_paddr are stable");
+		$display("\n\napb_write_paddr, READ_WRITE and apb_read_paddr are stable when transfer is asserted");
 	else
-		$display("apb_write_paddr, READ_WRITE and apb_read_paddr are not stable");
+		$display("\n\napb_write_paddr, READ_WRITE and apb_read_paddr are not stable is asserted");
 endprogram

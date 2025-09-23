@@ -44,10 +44,15 @@ class apb_scoreboard extends uvm_scoreboard();
 			// Writing or reading
 			if(packet1.PRESETn == 0)
 			begin
-						$display("------------------------------------------------------------------------------");
-						$display("                PRESETn is applied                            ");
-						$display("------------------------------------------------------------------------------");
-						$display("############################################################################################################################");
+				$display("------------------------------------------------------------------------------");
+				$display("                PRESETn is applied                            ");
+				$display("apb_read_data_out = %0d | packet2.PSLVERR = %0d",packet2.apb_read_data_out, packet2.PSLVERR);
+				if(packet2.apb_read_data_out == 'b0 && packet2.PSLVERR == 0)
+					$display("PRESETn has set outputs to 0");
+				else
+					$display("PRESETn has not set outputs to 0");
+				$display("------------------------------------------------------------------------------");
+				$display("############################################################################################################################");
 			end
 			else
 			begin

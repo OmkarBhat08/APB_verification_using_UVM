@@ -1,0 +1,12 @@
+var g_data = {
+c1531:[4,'reset',[],,'1530',1,1,'input_cov','1525','/apb_pkg/apb_subscriber',[[],[0,'1','1',,'auto[0]'],[0,'1','9',,'auto[1]']],[]],
+c1532:[4,'transfer',[],,'1530',1,1,'input_cov','1525','/apb_pkg/apb_subscriber',[[],[0,'1','3',,'auto[0]'],[0,'1','7',,'auto[1]']],[]],
+c1533:[4,'read_write',[],,'1530',1,1,'input_cov','1525','/apb_pkg/apb_subscriber',[[],[0,'1','4',,'auto[0]'],[0,'1','3',,'auto[1]']],[]],
+c1535:[4,'error',[],,'1534',1,1,'output_cov','1525','/apb_pkg/apb_subscriber',[[],[0,'1','9',,'auto[0]'],[0,'1','0',1,'auto[1]']],[]],
+c2035:[4,'reset',[],,'2034',1,1,'input_cov','2029','work.apb_pkg::apb_subscriber',[[],[0,'1','1',,'auto[0]'],[0,'1','9',,'auto[1]']],[]],
+c2036:[4,'transfer',[],,'2034',1,1,'input_cov','2029','work.apb_pkg::apb_subscriber',[[],[0,'1','3',,'auto[0]'],[0,'1','7',,'auto[1]']],[]],
+c2037:[4,'read_write',[],,'2034',1,1,'input_cov','2029','work.apb_pkg::apb_subscriber',[[],[0,'1','4',,'auto[0]'],[0,'1','3',,'auto[1]']],[]],
+c2039:[4,'error',[],,'2038',1,1,'output_cov','2029','work.apb_pkg::apb_subscriber',[[],[0,'1','9',,'auto[0]'],[0,'1','0',1,'auto[1]']],[]],
+dummyEnd:0
+};
+processCovergroupsData(g_data);
