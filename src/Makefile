@@ -18,6 +18,6 @@ compile:
 
 clean:
 	rm -rf work/	 
-	rm  dump.vcd transcript
+	rm dump.vcd
 	clear
 	clear

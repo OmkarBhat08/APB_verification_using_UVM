@@ -15,10 +15,22 @@ class apb_subscriber extends uvm_component;
     reset: coverpoint trans_inp.PRESETn;
     transfer: coverpoint trans_inp.transfer;
     read_write: coverpoint trans_inp.READ_WRITE iff(trans_inp.transfer == 1);
+		write_data: coverpoint trans_inp.apb_write_data {bins w_range0 = {[0:50]};
+			                                        bins w_range1 = {[51:100]};
+			                                        bins w_range2 = {[101:150]};
+			                                        bins w_range3 = {[151:200]};
+			                                        bins w_range4 = {[201:255]};
+			                                        }
   endgroup
 
   covergroup output_cov;
     error: coverpoint trans_out.PSLVERR;
+		read_data: coverpoint trans_out.apb_read_data_out {bins r_range0 = {[0:50]};
+			                                        bins r_range1 = {[51:100]};
+			                                        bins r_range2 = {[101:150]};
+			                                        bins r_range3 = {[151:200]};
+			                                        bins r_range4 = {[201:255]};
+			                                        }
   endgroup
 
   function new(string name = "apb_subscriber", uvm_component parent = null);

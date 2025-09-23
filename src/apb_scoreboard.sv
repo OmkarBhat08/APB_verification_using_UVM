@@ -57,9 +57,17 @@ class apb_scoreboard extends uvm_scoreboard();
 			else
 			begin
       	if(packet1.READ_WRITE == 0)  // Write
+				begin
+					if(~packet1.transfer)
+						$display("----------------APB is disabled | transfer is 0-----------------------------");
+					$display("Writing %0d to memory address %0d", packet1.apb_write_data, packet1.apb_write_paddr);
 					mem[packet1.apb_write_paddr] = packet1.apb_write_data;
+				end
 				else  //Read and compare
 				begin
+					if(~packet1.transfer)
+						$display("----------------APB is disabled | transfer is 0-----------------------------");
+
 					if(packet2.apb_read_data_out === mem[packet1.apb_read_paddr])
 					begin
 						$display("------------------------------------------------------------------------------");

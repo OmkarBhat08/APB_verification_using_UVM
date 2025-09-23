@@ -3,12 +3,12 @@ import uvm_pkg ::*;
 
 class apb_sequence_item extends uvm_sequence_item;
 
-	rand bit PRESETn;
-	rand bit transfer;
-	rand bit READ_WRITE;
-	rand bit [8:0]apb_write_paddr;
-	rand bit [7:0]apb_write_data;
-	rand bit [8:0]apb_read_paddr;
+	rand logic PRESETn;
+	rand logic transfer;
+	rand logic READ_WRITE;
+	rand logic [8:0]apb_write_paddr;
+	rand logic [7:0]apb_write_data;
+	rand logic [8:0]apb_read_paddr;
 
 	logic [7:0]apb_read_data_out;
 	logic PSLVERR;

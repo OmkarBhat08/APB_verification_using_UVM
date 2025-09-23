@@ -17,91 +17,6 @@ class apb_base_test extends uvm_test;
 	endfunction
 endclass
 //---------------------------------------------------------------------------------------------------------
-class transfer1_test extends apb_base_test;
-	`uvm_component_utils(transfer1_test)
-
-	function new(string name = "transfer1_test", uvm_component parent = null);
-		super.new(name, parent);
-	endfunction
-
-	virtual task run_phase(uvm_phase phase);
-		transfer_sequence1 seq;
-		super.run_phase(phase);
-		phase.raise_objection(this, "Objection Raised");
-		seq = transfer_sequence1::type_id::create("seq");
-		seq.start(env.apb_active_agent_1.apb_sequencer_1);
-		phase.drop_objection(this, "Objection Dropped");
-	endtask
-
-	virtual function void end_of_elaboration();
-		print();
-	endfunction
-endclass
-//---------------------------------------------------------------------------------------------------------
-class transfer2_test extends apb_base_test;
-	`uvm_component_utils(transfer2_test)
-
-	function new(string name = "transfer2_test", uvm_component parent = null);
-		super.new(name, parent);
-	endfunction
-
-	virtual task run_phase(uvm_phase phase);
-		transfer_sequence2 seq;
-		super.run_phase(phase);
-		phase.raise_objection(this, "Objection Raised");
-		seq = transfer_sequence2::type_id::create("seq");
-		seq.start(env.apb_active_agent_1.apb_sequencer_1);
-		phase.drop_objection(this, "Objection Dropped");
-	endtask
-
-	virtual function void end_of_elaboration();
-		print();
-	endfunction
-endclass
-//---------------------------------------------------------------------------------------------------------
-class write_test extends apb_base_test;
-	`uvm_component_utils(write_test)
-
-	function new(string name = "write_test", uvm_component parent = null);
-		super.new(name, parent);
-	endfunction
-
-	virtual task run_phase(uvm_phase phase);
-		write_sequence1 seq;
-		super.run_phase(phase);
-		phase.raise_objection(this, "Objection Raised");
-		seq = write_sequence1::type_id::create("seq");
-		seq.start(env.apb_active_agent_1.apb_sequencer_1);
-		phase.drop_objection(this, "Objection Dropped");
-	endtask
-
-	virtual function void end_of_elaboration();
-		print();
-	endfunction
-endclass
-//---------------------------------------------------------------------------------------------------------
-class read_test extends apb_base_test;
-	`uvm_component_utils(read_test)
-
-	function new(string name = "read_test", uvm_component parent = null);
-		super.new(name, parent);
-	endfunction
-
-	virtual task run_phase(uvm_phase phase);
-		read_sequence2 seq;
-		super.run_phase(phase);
-		phase.raise_objection(this, "Objection Raised");
-		seq = read_sequence2::type_id::create("seq");
-		seq.start(env.apb_active_agent_1.apb_sequencer_1);
-		phase.drop_objection(this, "Objection Dropped");
-	endtask
-
-	virtual function void end_of_elaboration();
-		print();
-	endfunction
-endclass
-
-//---------------------------------------------------------------------------------------------------------
 class regression_test extends apb_base_test;
 	`uvm_component_utils(regression_test)
 
@@ -113,8 +28,11 @@ class regression_test extends apb_base_test;
 		regression_sequence seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		seq = regression_sequence::type_id::create("seq");
-		seq.start(env.apb_active_agent_1.apb_sequencer_1);
+		repeat(100)
+		begin
+			seq = regression_sequence::type_id::create("seq");
+			seq.start(env.apb_active_agent_1.apb_sequencer_1);
+		end
 		phase.drop_objection(this, "Objection Dropped");
 	endtask
 
