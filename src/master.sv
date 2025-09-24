@@ -11,7 +11,6 @@
 	output reg PWRITE,
 	output reg [7:0]PWDATA,apb_read_data_out,
 	output PSLVERR ); 
-       // integer i,count;
    
   reg [2:0] state, next_state;
 
@@ -45,7 +44,7 @@
 		     IDLE: begin 
 		              PENABLE =0;
 
-		            if(!transfer)
+		            if(!transfer)		// Corrected
 	        	      next_state = IDLE ;
 	                    else
 			      next_state = SETUP;
@@ -55,15 +54,16 @@
 			    PENABLE =0;
 
 			    if(READ_WRITE) 
-				 //     @(posedge PCLK)
-	                       begin   PADDR = apb_read_paddr; end
+	        begin   
+						PADDR = apb_read_paddr; 
+					end
 			    else 
-			      begin   
-			          //@(posedge PCLK)
-                                  PADDR = apb_write_paddr;
-				  PWDATA = apb_write_data;  end
+			    begin   
+            PADDR = apb_write_paddr;
+				  	PWDATA = apb_write_data;  
+					end
 			    
-			    if(transfer && !PSLVERR)
+			    if(transfer && !PSLVERR)	// Corected
 			      next_state = ENABLE;
 		            else
            	              next_state = IDLE;
@@ -92,48 +92,6 @@
 		             else next_state = IDLE;
 			 end
 			   
-		        /* if(transfer && !PREADY && READ_WRITE)
-                             begin
-                              //   repeat(3) @(posedge PCLK)  
-                		// begin
-			          //  if(!transfer)
-                                    //  next_state = IDLE;
-		                    //else 
-                                      // begin
-                                        //if(PREADY) begin
-                                          //  next_state = SETUP;
-                                            //apb_read_data_out = PRDATA; end
-                                        //else
-                                            next_state = ENABLE;
-				       //end 
-                                end
-		            end
-
-                       else if(transfer && PREADY && READ_WRITE )
-                                 begin
-			           apb_read_data_out = PRDATA; 
-                                   next_state = SETUP; 
-			         end
-                                                    
-		       else if(transfer && !PREADY && !READ_WRITE)
-                                   begin
-                                   //   repeat(3) @(posedge PCLK)                                          
-			             //   begin
-			               // if(!transfer)
-                                    //     next_state = IDLE;
-				      //  else begin
-				        //  if(PREADY) 
-					  //   next_state = SETUP;
-				          //else
-						  next_state = ENABLE;
-				         end
-			             end 
-			     end  
-					   
-                       else if(transfer && PREADY && !READ_WRITE )
-			     begin
-                                   next_state = SETUP; 
-                                  $strobe($time," Enable write operation"); end   */
                              
                        
                                  default: next_state = IDLE; 
@@ -142,33 +100,6 @@
           end
 
 
- /*     always @(posedge PCLK) 
-
-      begin
-	       PWRITE = ~READ_WRITE;
-
-	      case(state)
-		      IDLE: begin
-			     
-			      PENABLE = 0;
-		             end
-
-		      SETUP: begin
-			      PENABLE =0;
-			      if(READ_WRITE) 
-				//  @(posedge PCLK)
-			          PADDR = apb_read_paddr;
-			      else 
-			         //@(posedge PCLK)
-                                  PADDR = apb_write_paddr;
-				  PWDATA = apb_write_data;
-			     end
-
-		      ENABLE: begin
-			      PENABLE =1;
-		             end
-	      endcase
-      end */
      assign {PSEL1,PSEL2} = ((state != IDLE) ? (PADDR[8] ? {1'b0,1'b1} : {1'b1,1'b0}) : 2'd0);
 
   // PSLVERR LOGIC

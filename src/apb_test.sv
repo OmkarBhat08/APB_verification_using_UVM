@@ -17,6 +17,166 @@ class apb_base_test extends uvm_test;
 	endfunction
 endclass
 //---------------------------------------------------------------------------------------------------------
+class reset_test extends apb_base_test;
+	`uvm_component_utils(reset_test)
+
+	function new(string name = "reset_test", uvm_component parent = null);
+		super.new(name, parent);
+	endfunction
+
+	virtual task run_phase(uvm_phase phase);
+		reset_sequence seq;
+		super.run_phase(phase);
+		phase.raise_objection(this, "Objection Raised");
+		repeat(100)
+		begin
+			seq = reset_sequence::type_id::create("seq");
+			seq.start(env.apb_active_agent_1.apb_sequencer_1);
+		end
+		phase.drop_objection(this, "Objection Dropped");
+	endtask
+endclass
+//---------------------------------------------------------------------------------------------------------
+class random_test extends apb_base_test;
+	`uvm_component_utils(random_test)
+
+	function new(string name = "random_test", uvm_component parent = null);
+		super.new(name, parent);
+	endfunction
+
+	virtual task run_phase(uvm_phase phase);
+		random_sequence seq;
+		super.run_phase(phase);
+		phase.raise_objection(this, "Objection Raised");
+		repeat(100)
+		begin
+			seq = random_sequence::type_id::create("seq");
+			seq.start(env.apb_active_agent_1.apb_sequencer_1);
+		end
+		phase.drop_objection(this, "Objection Dropped");
+	endtask
+endclass
+//---------------------------------------------------------------------------------------------------------
+class transfer0_test extends apb_base_test;
+	`uvm_component_utils(transfer0_test)
+
+	function new(string name = "transfer0_test", uvm_component parent = null);
+		super.new(name, parent);
+	endfunction
+
+	virtual task run_phase(uvm_phase phase);
+		transfer0_sequence seq;
+		super.run_phase(phase);
+		phase.raise_objection(this, "Objection Raised");
+		repeat(100)
+		begin
+			seq = transfer0_sequence::type_id::create("seq");
+			seq.start(env.apb_active_agent_1.apb_sequencer_1);
+		end
+		phase.drop_objection(this, "Objection Dropped");
+	endtask
+endclass
+//---------------------------------------------------------------------------------------------------------
+class slave0_test extends apb_base_test;
+	`uvm_component_utils(slave0_test)
+
+	function new(string name = "slave0_test", uvm_component parent = null);
+		super.new(name, parent);
+	endfunction
+
+	virtual task run_phase(uvm_phase phase);
+		slave0_sequence seq;
+		super.run_phase(phase);
+		phase.raise_objection(this, "Objection Raised");
+		repeat(100)
+		begin
+			seq = slave0_sequence::type_id::create("seq");
+			seq.start(env.apb_active_agent_1.apb_sequencer_1);
+		end
+		phase.drop_objection(this, "Objection Dropped");
+	endtask
+endclass
+//---------------------------------------------------------------------------------------------------------
+class slave1_test extends apb_base_test;
+	`uvm_component_utils(slave1_test)
+
+	function new(string name = "slave1_test", uvm_component parent = null);
+		super.new(name, parent);
+	endfunction
+
+	virtual task run_phase(uvm_phase phase);
+		slave1_sequence seq;
+		super.run_phase(phase);
+		phase.raise_objection(this, "Objection Raised");
+		repeat(100)
+		begin
+			seq = slave1_sequence::type_id::create("seq");
+			seq.start(env.apb_active_agent_1.apb_sequencer_1);
+		end
+		phase.drop_objection(this, "Objection Dropped");
+	endtask
+endclass
+//---------------------------------------------------------------------------------------------------------
+class align_test extends apb_base_test;
+	`uvm_component_utils(align_test)
+
+	function new(string name = "align_test", uvm_component parent = null);
+		super.new(name, parent);
+	endfunction
+
+	virtual task run_phase(uvm_phase phase);
+		align_sequence seq;
+		super.run_phase(phase);
+		phase.raise_objection(this, "Objection Raised");
+		repeat(100)
+		begin
+			seq = align_sequence::type_id::create("seq");
+			seq.start(env.apb_active_agent_1.apb_sequencer_1);
+		end
+		phase.drop_objection(this, "Objection Dropped");
+	endtask
+endclass
+//---------------------------------------------------------------------------------------------------------
+class b2bsame_test extends apb_base_test;
+	`uvm_component_utils(b2bsame_test)
+
+	function new(string name = "b2bsame_test", uvm_component parent = null);
+		super.new(name, parent);
+	endfunction
+
+	virtual task run_phase(uvm_phase phase);
+		b2bsame seq;
+		super.run_phase(phase);
+		phase.raise_objection(this, "Objection Raised");
+		repeat(100)
+		begin
+			seq = b2bsame::type_id::create("seq");
+			seq.start(env.apb_active_agent_1.apb_sequencer_1);
+		end
+		phase.drop_objection(this, "Objection Dropped");
+	endtask
+endclass
+//---------------------------------------------------------------------------------------------------------
+class b2bdiff_test extends apb_base_test;
+	`uvm_component_utils(b2bdiff_test)
+
+	function new(string name = "b2bdiff_test", uvm_component parent = null);
+		super.new(name, parent);
+	endfunction
+
+	virtual task run_phase(uvm_phase phase);
+		b2bdiff seq;
+		super.run_phase(phase);
+		phase.raise_objection(this, "Objection Raised");
+		repeat(100)
+		begin
+			seq = b2bdiff::type_id::create("seq");
+			seq.start(env.apb_active_agent_1.apb_sequencer_1);
+		end
+		phase.drop_objection(this, "Objection Dropped");
+	endtask
+endclass
+//---------------------------------------------------------------------------------------------------------
 class regression_test extends apb_base_test;
 	`uvm_component_utils(regression_test)
 
@@ -28,7 +188,7 @@ class regression_test extends apb_base_test;
 		regression_sequence seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		//repeat(100)
+		repeat(100)
 		begin
 			seq = regression_sequence::type_id::create("seq");
 			seq.start(env.apb_active_agent_1.apb_sequencer_1);

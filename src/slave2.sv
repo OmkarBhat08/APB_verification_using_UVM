@@ -11,7 +11,7 @@ module slave2(
     
      reg [7:0]reg_addr;
 
-  reg [7:0] mem2 [0:255];
+  reg [7:0] mem2 [0:255];		// Corrected
 
     assign PRDATA2 =  mem2[reg_addr];
 
@@ -29,7 +29,7 @@ module slave2(
 	     begin  PREADY = 1;
                     reg_addr =  PADDR; 
 	       end
-          else if(PSEL && !PENABLE && PWRITE)
+          else if(PSEL && !PENABLE && PWRITE)		// Corrected
 	     begin  PREADY = 0; end
 
 	  else if(PSEL && PENABLE && PWRITE)
