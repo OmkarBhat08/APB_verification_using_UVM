@@ -1,7 +1,7 @@
 class apb_active_monitor extends uvm_monitor;
 
 	virtual apb_interfs vif;
-
+	bit rst_flag;
 	uvm_analysis_port #(apb_sequence_item) active_item_port;
 
 	apb_sequence_item apb_sequence_item_1;
@@ -12,6 +12,7 @@ class apb_active_monitor extends uvm_monitor;
 		super.new(name, parent);
 		apb_sequence_item_1 = new();
 		active_item_port = new("active_item_port", this);
+		rst_flag = 0;
 	endfunction
 
 	function void build_phase(uvm_phase phase);
@@ -24,13 +25,24 @@ class apb_active_monitor extends uvm_monitor;
     repeat(1)@(vif.monitor_cb);
 		forever 
 		begin
-      repeat(1)@(vif.monitor_cb);
+			/*
+			if(rst_flag == 1)
+      	repeat(2)@(vif.monitor_cb);
+			else
+				*/
+      	repeat(1)@(vif.monitor_cb);
+
 			apb_sequence_item_1.PRESETn = vif.PRESETn;
 			apb_sequence_item_1.transfer = vif.transfer;
 			apb_sequence_item_1.READ_WRITE = vif.READ_WRITE;
 			apb_sequence_item_1.apb_write_paddr = vif.apb_write_paddr;
 			apb_sequence_item_1.apb_write_data = vif.apb_write_data;
 			apb_sequence_item_1.apb_read_paddr = vif.apb_read_paddr;
+
+			if(vif.PRESETn)
+				rst_flag = 1;
+			else
+				rst_flag = 0;
           
       $display("---------------------------Active Monitor @%0d-----------------------------------",$time);
 			apb_sequence_item_1.print();

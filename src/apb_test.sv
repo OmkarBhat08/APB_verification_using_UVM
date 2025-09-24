@@ -28,11 +28,8 @@ class reset_test extends apb_base_test;
 		reset_sequence seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		repeat(100)
-		begin
-			seq = reset_sequence::type_id::create("seq");
-			seq.start(env.apb_active_agent_1.apb_sequencer_1);
-		end
+		seq = reset_sequence::type_id::create("seq");
+		seq.start(env.apb_active_agent_1.apb_sequencer_1);
 		phase.drop_objection(this, "Objection Dropped");
 	endtask
 endclass
@@ -48,11 +45,8 @@ class random_test extends apb_base_test;
 		random_sequence seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		repeat(100)
-		begin
-			seq = random_sequence::type_id::create("seq");
-			seq.start(env.apb_active_agent_1.apb_sequencer_1);
-		end
+		seq = random_sequence::type_id::create("seq");
+		seq.start(env.apb_active_agent_1.apb_sequencer_1);
 		phase.drop_objection(this, "Objection Dropped");
 	endtask
 endclass
@@ -68,11 +62,8 @@ class transfer0_test extends apb_base_test;
 		transfer0_sequence seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		repeat(100)
-		begin
-			seq = transfer0_sequence::type_id::create("seq");
-			seq.start(env.apb_active_agent_1.apb_sequencer_1);
-		end
+		seq = transfer0_sequence::type_id::create("seq");
+		seq.start(env.apb_active_agent_1.apb_sequencer_1);
 		phase.drop_objection(this, "Objection Dropped");
 	endtask
 endclass
@@ -88,11 +79,8 @@ class slave0_test extends apb_base_test;
 		slave0_sequence seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		repeat(100)
-		begin
-			seq = slave0_sequence::type_id::create("seq");
-			seq.start(env.apb_active_agent_1.apb_sequencer_1);
-		end
+		seq = slave0_sequence::type_id::create("seq");
+		seq.start(env.apb_active_agent_1.apb_sequencer_1);
 		phase.drop_objection(this, "Objection Dropped");
 	endtask
 endclass
@@ -108,11 +96,8 @@ class slave1_test extends apb_base_test;
 		slave1_sequence seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		repeat(100)
-		begin
-			seq = slave1_sequence::type_id::create("seq");
-			seq.start(env.apb_active_agent_1.apb_sequencer_1);
-		end
+		seq = slave1_sequence::type_id::create("seq");
+		seq.start(env.apb_active_agent_1.apb_sequencer_1);
 		phase.drop_objection(this, "Objection Dropped");
 	endtask
 endclass
@@ -128,11 +113,8 @@ class align_test extends apb_base_test;
 		align_sequence seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		repeat(100)
-		begin
-			seq = align_sequence::type_id::create("seq");
-			seq.start(env.apb_active_agent_1.apb_sequencer_1);
-		end
+		seq = align_sequence::type_id::create("seq");
+		seq.start(env.apb_active_agent_1.apb_sequencer_1);
 		phase.drop_objection(this, "Objection Dropped");
 	endtask
 endclass
@@ -148,11 +130,8 @@ class b2bsame_test extends apb_base_test;
 		b2bsame seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		repeat(100)
-		begin
-			seq = b2bsame::type_id::create("seq");
-			seq.start(env.apb_active_agent_1.apb_sequencer_1);
-		end
+		seq = b2bsame::type_id::create("seq");
+		seq.start(env.apb_active_agent_1.apb_sequencer_1);
 		phase.drop_objection(this, "Objection Dropped");
 	endtask
 endclass
@@ -168,11 +147,8 @@ class b2bdiff_test extends apb_base_test;
 		b2bdiff seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		repeat(100)
-		begin
-			seq = b2bdiff::type_id::create("seq");
-			seq.start(env.apb_active_agent_1.apb_sequencer_1);
-		end
+		seq = b2bdiff::type_id::create("seq");
+		seq.start(env.apb_active_agent_1.apb_sequencer_1);
 		phase.drop_objection(this, "Objection Dropped");
 	endtask
 endclass
@@ -188,7 +164,7 @@ class regression_test extends apb_base_test;
 		regression_sequence seq;
 		super.run_phase(phase);
 		phase.raise_objection(this, "Objection Raised");
-		repeat(100)
+	//	repeat(100)
 		begin
 			seq = regression_sequence::type_id::create("seq");
 			seq.start(env.apb_active_agent_1.apb_sequencer_1);

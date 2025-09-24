@@ -2,11 +2,12 @@ class apb_driver extends uvm_driver #(apb_sequence_item);
 
 	virtual apb_interfs vif;
 	apb_sequence_item seq;
-
+	bit rst_flag;
 	`uvm_component_utils(apb_driver)
 
 	function new(string name = "apb_driver", uvm_component parent);
 		super.new(name, parent);
+		rst_flag = 0;
 	endfunction
 
 	function void build_phase(uvm_phase phase);
@@ -26,13 +27,23 @@ class apb_driver extends uvm_driver #(apb_sequence_item);
 	endtask
 
 	virtual task drive();
-    repeat(1) @(vif.driver_cb);
+	/*
+		if(rst_flag == 1)
+    	repeat(2) @(vif.driver_cb);
+		else
+			*/
+    	repeat(1) @(vif.driver_cb);
 		vif.driver_cb.PRESETn <= seq.PRESETn;
 		vif.driver_cb.transfer <= seq.transfer;
 		vif.driver_cb.READ_WRITE <= seq.READ_WRITE;
 		vif.driver_cb.apb_write_paddr <= seq.apb_write_paddr;
 		vif.driver_cb.apb_read_paddr <= seq.apb_read_paddr;
 		vif.driver_cb.apb_write_data <= seq.apb_write_data;
+		if(seq.PRESETn)
+			rst_flag = 1;
+		else
+			rst_flag = 0;
+
 		`uvm_info(get_type_name(), $sformatf("DRIVER: PRESETn = %0b, transfer = %0d, READ_WRITE = %0d, apb_write_paddr = %0h, apb_write_data = %0d, apb_read_paddr = %0h", vif.driver_cb.PRESETn, vif.driver_cb.transfer, vif.driver_cb.READ_WRITE, vif.driver_cb.apb_write_paddr, vif.driver_cb.apb_write_data, vif.driver_cb.apb_read_paddr), UVM_MEDIUM)
     repeat(2) @(vif.driver_cb);
 	endtask

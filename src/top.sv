@@ -1,7 +1,7 @@
 `include "defines.svh"
 `include "apb_interfs.sv"
 `include "apb_pkg.sv"
-`include "apb_design.sv"
+`include "apbtop.v"
 `include "apb_assertions.sv"
 
 import uvm_pkg::*;
@@ -40,6 +40,14 @@ module top();
 	initial
 	begin
 		run_test("regression_test");
+		//run_test("reset_test");
+		//run_test("random_test");
+		//run_test("transfer0_test");
+		//run_test("slave0_test");
+		//run_test("slave1_test");
+		//run_test("align_test");
+		//run_test("b2bsame_test");
+		//run_test("b2bdiff_test");
 		$finish;
 	end
 endmodule

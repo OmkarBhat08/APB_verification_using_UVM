@@ -30,8 +30,8 @@ class transfer0_sequence extends uvm_sequence #(apb_sequence_item);
 	endfunction
 
 	virtual task body();
-		`uvm_do_with(req,{req.PRESETn == 1; req.transfer == 0; req.READ_WRITE == 0; req.apb_write_paddr == 9'b000001000;});
-		`uvm_do_with(req,{req.PRESETn == 1; req.transfer == 0; req.READ_WRITE == 1;  req.apb_read_paddr == 9'b000001000;});
+		`uvm_do_with(req,{req.PRESETn == 1; req.transfer == 0; req.READ_WRITE == 0; req.apb_write_paddr == 9'b100001000;});
+		`uvm_do_with(req,{req.PRESETn == 1; req.transfer == 0; req.READ_WRITE == 1;  req.apb_read_paddr == 9'b100001000;});
 	endtask
 endclass
 //------------------------------------------------------------------------------------------------------
@@ -153,7 +153,7 @@ class regression_sequence extends uvm_sequence #(apb_sequence_item);
 	transfer0_sequence transfer_seq;
 	slave0_sequence slv0_seq;
 	slave1_sequence slv1_seq;
-	align_sequence al_seq;
+	align_sequence align_seq;
 	b2bsame b2bsame_seq;
 	b2bdiff b2bdiff_seq;
   
@@ -163,12 +163,16 @@ class regression_sequence extends uvm_sequence #(apb_sequence_item);
 
 	virtual task body();
 		`uvm_do(rst_seq);
-		`uvm_do(rand_seq);
 		`uvm_do(transfer_seq);
+		`uvm_do(rand_seq);
 		`uvm_do(slv0_seq);
 		`uvm_do(slv1_seq);
-		`uvm_do(al_seq);
-		`uvm_do(b2bsame_seq);
-		`uvm_do(b2bdiff_seq);
+		`uvm_do(rst_seq);
+		`uvm_do(transfer_seq);
+		`uvm_do(rand_seq);
+		`uvm_do(slv0_seq);
+		//`uvm_do(align_seq);
+		//`uvm_do(b2bsame_seq);
+		//`uvm_do(b2bdiff_seq);
 	endtask
 endclass

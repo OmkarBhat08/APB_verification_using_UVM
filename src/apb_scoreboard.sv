@@ -4,7 +4,7 @@
 class apb_scoreboard extends uvm_scoreboard();
 
 	bit [7:0] mem [512:0];
-
+	int pass_count, fail_count;
 	uvm_analysis_imp_from_inp #(apb_sequence_item, apb_scoreboard) inputs_export;
 	uvm_analysis_imp_from_out #(apb_sequence_item, apb_scoreboard) outputs_export;
 
@@ -18,6 +18,8 @@ class apb_scoreboard extends uvm_scoreboard();
 		super.new(name, parent);
 		inputs_export = new("inputs_export", this);
 		outputs_export = new("outputs_export", this);
+		pass_count = 0;
+		fail_count = 0;
 	endfunction
 
 	virtual function void write_from_inp(apb_sequence_item t);
@@ -47,12 +49,20 @@ class apb_scoreboard extends uvm_scoreboard();
 				$display("------------------------------------------------------------------------------");
 				$display("                PRESETn is applied                            ");
 				$display("apb_read_data_out = %0d | packet2.PSLVERR = %0d",packet2.apb_read_data_out, packet2.PSLVERR);
+
 				if(packet2.apb_read_data_out == 'b0 && packet2.PSLVERR == 0)
+				begin
 					$display("PRESETn has set outputs to 0");
+					$display("                TEST PASSED @ %0t                             ", $time);
+					pass_count ++;
+				end
 				else
+				begin
 					$display("PRESETn has not set outputs to 0");
+					$display("                TEST FAILED @ %0t                                ",$time);
+					fail_count ++;
+				end
 				$display("------------------------------------------------------------------------------");
-				$display("############################################################################################################################");
 			end
 			else
 			begin
@@ -73,17 +83,19 @@ class apb_scoreboard extends uvm_scoreboard();
 						$display("------------------------------------------------------------------------------");
 						$display("                TEST PASSED @ %0t                             ", $time);
 						$display("------------------------------------------------------------------------------");
-						$display("############################################################################################################################");
+						pass_count ++;
 					end
 					else
 					begin
 						$display("------------------------------------------------------------------------------");
 						$display("                TEST FAILED @ %0t                                ",$time);
 						$display("------------------------------------------------------------------------------");
-						$display("############################################################################################################################");
+						fail_count ++;
 					end
 				end
 			end
+			$display("PASS count = %0d | FAIL count = %0d",pass_count, fail_count);
+			$display("############################################################################################################################");
 		end
 	endtask
 endclass
