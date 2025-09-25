@@ -31,8 +31,8 @@ module master_bridge(
 			state <= next_state; 
 	end
 
-	always @(state,transfer,PREADY)
-
+	// always @(state,transfer,PREADY)
+	always@(*)
 	begin
 		if(!PRESETn)
 			next_state = IDLE;
@@ -139,6 +139,8 @@ module master_bridge(
 			endcase
 		end
 	end
+
+
 	/*     always @(posedge PCLK) 
 
 	begin
@@ -225,5 +227,9 @@ module master_bridge(
 		end
 		invalid_setup_error = setup_error ||  invalid_read_paddr || invalid_write_data || invalid_write_paddr  ;
 	end 
+
 	assign PSLVERR =  invalid_setup_error ;
+
+
+
 endmodule

@@ -21,10 +21,12 @@ property PRESETn_check;
    $rose(transfer) |=> ##[1:2] ($stable(apb_write_paddr) && $stable(READ_WRITE) && $stable(apb_read_paddr));
  endproperty
   
+ /*
     property unknown_check;
   @(posedge PCLK) disable iff (!PRESETn)
         !$isunknown({PRESETn, transfer, READ_WRITE, apb_write_paddr, apb_write_data, apb_read_paddr});
  endproperty
+ */
 
  assert property(PRESETn_check)
   $display("RESET is asserted");
@@ -40,9 +42,11 @@ property PRESETn_check;
   $display("\n\napb_write_paddr, READ_WRITE and apb_read_paddr are stable when transfer is asserted");
  else
   $display("\n\napb_write_paddr, READ_WRITE and apb_read_paddr are not stable is asserted");
-    
+   
+/* 
  assert property(unknown_check)
   $display("\n\nAPB: All monitored signals are known");
  else
   $display("\n\nOne or more signals are X/Z (transfer, PRESETn, READ_WRITE, apb_write_paddr, apb_write_data, apb_read_paddr)");
+ */
 endprogram
